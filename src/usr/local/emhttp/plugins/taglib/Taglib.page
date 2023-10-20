@@ -1,0 +1,188 @@
+Menu="Utilities"
+Title="taglib"
+Icon="edit"
+---
+<?PHP
+$plugin = 'taglib';
+$cfg = parse_plugin_cfg($plugin);
+?>
+
+<table>
+    <thead>
+    <tr>
+        <th>标签名称</th>
+        <th>访问地址</th>
+        <th>是否自适应布局</th>
+        <th>宽度(单位px)</th>
+        <th>高度(单位px)</th>
+        <th>打开方式</th>
+        <th>排序</th>
+    </tr>
+    </thead>
+    <tbody id="tableBody"></tbody>
+</table>
+<table id="addTable">
+    <tr>
+        <td>
+            <div>标签名称:</div>
+            <input name="label" placeholder="标签名称" type="text" value=""></td>
+        <td>
+            <div>访问地址:</div>
+            <input name="address" placeholder="http://127.0.0.1" type="text" value=""></td>
+        <td>
+            <div>是否自适应布局:</div>
+            <input checked name="adaptive" type="radio" value="true"> 是
+            <input name="adaptive" type="radio" value="false"> 否
+        </td>
+        <td>
+            <div>宽度:</div>
+            <input name="width" type="text" value="1920px"></td>
+        <td>
+            <div>高度:</div>
+            <input name="height" type="text" value="1080px"></td>
+        <td>
+            <div>打开方式:</div>
+            <select name="open">
+                <option selected value="tab">内置标签</option>
+                <option value="new">新标签</option>
+            </select>
+        <td>
+            <div>排序:</div>
+            <input name="sort" type="number" value="0"></td>
+        <td style="text-align: center;">
+            <button onclick="addRow()">新增</button>
+        </td>
+</table>
+<style>
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        border: 2px solid #3498db;
+        margin-bottom: 20px;
+    }
+
+    th, td {
+        border: 2px solid #3498db;
+        padding: 8px;
+        text-align: left;
+    }
+
+    th {
+        background-color: #3498db;
+        color: white;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    tr:nth-child(odd) {
+        background-color: #e6e6e6;
+    }
+
+    input[type="text"], input[type="number"] {
+        width: 90%; /* Reduce the width slightly */
+        padding: 6px;
+        border: 1px solid #3498db;
+        background-color: #f2f2f2;
+        border-radius: 5px;
+    }
+</style>
+<script>
+    let settingUrl = "/plugins/taglib/include/setting.php";
+    let tabData = [];
+
+    function applyData(settings) {
+        $.post(settingUrl, {action: 'applyData', settings: JSON.stringify(settings)}, (data)=> {
+            if (data) {
+                init();
+            }
+        });
+    }
+
+    function init() {
+        $.post(settingUrl, {action: 'getData'}, (data) => {
+            if (data) {
+                tabData = data;
+            }
+        });
+
+        let tableBody = document.getElementById("tableBody");
+        while (tableBody.firstChild) {
+            tableBody.removeChild(tableBody.firstChild);
+        }
+        for (let i = 0; i < tabData.length; i++) {
+            let datum = tabData[i];
+            let newRow = document.createElement("tr");
+            for (let key in datum) {
+                let cell = document.createElement("td");
+                cell.textContent = datum[key];
+                if (key == "adaptive" && datum[key] == "true") {
+                    cell.textContent = "是";
+                } else if (key == "adaptive" && datum[key] == "false") {
+                    cell.textContent = "否";
+                }
+                cell.id = key + i;
+                newRow.appendChild(cell);
+            }
+            tableBody.appendChild(newRow);
+        }
+    }
+
+    function addRow() {
+        let table = document.getElementById('addTable');
+        let label = table.querySelector('input[name="label"]').value;
+        let address = table.querySelector('input[name="address"]').value;
+        let adaptive = table.querySelector('input[name="adaptive"]:checked').value;
+        let width = table.querySelector('input[name="width"]').value;
+        let height = table.querySelector('input[name="height"]').value;
+        let open = table.querySelector('select[name="open"]').value;
+        let sort = table.querySelector('input[name="sort"]').value;
+
+        if (!label) {
+            alert("请检查标签名称是否填写");
+            return;
+        }
+        if (!/^[A-Za-z].*$/.test(label)) {
+            alert("标签名称必须以英文开头");
+            return;
+        }
+        if (!address) {
+            alert("请检查地址是否填写");
+            return;
+        }
+        if (!adaptive) {
+            alert("请检查是否自适应是否选中");
+            return;
+        }
+        if (!width) {
+            alert("请检查宽度是否填写");
+            return;
+        }
+        if (!height) {
+            alert("请检查高度是否填写");
+            return;
+        }
+        if (!open) {
+            alert("请检查打开方式是否选中");
+            return;
+        }
+        if (!sort) {
+            alert("请检查排序是否填写");
+            return;
+        }
+
+        tabData.push({
+            "label": label,
+            "address": address,
+            "adaptive": adaptive,
+            "width": width,
+            "height": height,
+            "open": open,
+            "sort": sort
+        });
+        applyData(tabData);
+    }
+
+    init();
+</script>
