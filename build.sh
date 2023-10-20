@@ -9,5 +9,11 @@ VERSION=$(date +"%Y.%m.%d")
 mkdir "releases"
 cd ./src
 makepkg -l y -c y ../releases/${PLUGIN_NAME}-${VERSION}.txz
-echo "md5sum:"
-md5sum ../releases/${PLUGIN_NAME}-${VERSION}.txz
+txzMd5="$(md5sum ../releases/${PLUGIN_NAME}-${VERSION}.txz | awk '{print $1}')"
+echo "md5sum:$txzMd5"
+
+cd ../
+sed -i 's/<!ENTITY md5.*/<!ENTITY md5       "'"$txzMd5"'">/' ./plugins/taglib.plg
+git add .
+git commit -m "${PLUGIN_NAME}-${VERSION}.txz"
+git push
