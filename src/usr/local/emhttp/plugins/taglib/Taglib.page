@@ -71,54 +71,53 @@ $cfg = parse_plugin_cfg($plugin);
 
     function init() {
         $.post(settingUrl, {action: 'getData'}, (data) => {
-            debugger
             if (data) {
-                tabData = data;
+                tabData = JSON.parse(data);
+
+                let tableBody = document.getElementById("tableBody");
+                while (tableBody.firstChild) {
+                    tableBody.removeChild(tableBody.firstChild);
+                }
+                if (tabData.length > 0) {
+                    document.getElementById('manageTag').style.display = 'table';
+                } else {
+                    document.getElementById('manageTag').style.display = 'none';
+                }
+                for (let i = 0; i < tabData.length; i++) {
+                    let datum = tabData[i];
+                    let newRow = document.createElement("tr");
+
+                    let keys = ["label", "address", "open", "adaptive", "width", "height", "sort"];
+
+                    for (let j = 0; j < keys.length; j++) {
+                        let key = keys[j];
+                        let cell = document.createElement("td");
+                        cell.textContent = datum[key];
+                        if (key == "adaptive" && datum[key] == "true") {
+                            cell.textContent = "是";
+                        } else if (key == "adaptive" && datum[key] == "false") {
+                            cell.textContent = "否";
+                        }
+                        if (key == "open" && datum[key] == "tab") {
+                            cell.textContent = "内置标签";
+                        } else if (key == "open" && datum[key] == "new") {
+                            cell.textContent = "新标签";
+                        }
+                        cell.id = key + i;
+                        newRow.appendChild(cell);
+                    }
+                    let cell = document.createElement("td");
+                    let cellButton = document.createElement("button");
+                    cellButton.textContent = "删除";
+                    cellButton.style.textAlign = "center";
+                    cellButton.style.margin = "0px";
+                    cellButton.onclick = 'delRow(' + i + ')';
+                    cell.appendChild(cellButton);
+                    newRow.appendChild(cell);
+                    tableBody.appendChild(newRow);
+                }
             }
         });
-
-        let tableBody = document.getElementById("tableBody");
-        while (tableBody.firstChild) {
-            tableBody.removeChild(tableBody.firstChild);
-        }
-        if (tabData.length > 0) {
-            document.getElementById('manageTag').style.display = 'table';
-        } else {
-            document.getElementById('manageTag').style.display = 'none';
-        }
-        for (let i = 0; i < tabData.length; i++) {
-            let datum = tabData[i];
-            let newRow = document.createElement("tr");
-
-            let keys = ["label", "address", "open", "adaptive", "width", "height", "sort"];
-
-            for (let j = 0; j < keys.length; j++) {
-                let key = keys[j];
-                let cell = document.createElement("td");
-                cell.textContent = datum[key];
-                if (key == "adaptive" && datum[key] == "true") {
-                    cell.textContent = "是";
-                } else if (key == "adaptive" && datum[key] == "false") {
-                    cell.textContent = "否";
-                }
-                if (key == "open" && datum[key] == "tab") {
-                    cell.textContent = "内置标签";
-                } else if (key == "open" && datum[key] == "new") {
-                    cell.textContent = "新标签";
-                }
-                cell.id = key + i;
-                newRow.appendChild(cell);
-            }
-            let cell = document.createElement("td");
-            let cellButton = document.createElement("button");
-            cellButton.textContent = "删除";
-            cellButton.style.textAlign = "center";
-            cellButton.style.margin = "0px";
-            cellButton.onclick = 'delRow(' + i + ')';
-            cell.appendChild(cellButton);
-            newRow.appendChild(cell);
-            tableBody.appendChild(newRow);
-        }
     }
 
     function addRow() {
