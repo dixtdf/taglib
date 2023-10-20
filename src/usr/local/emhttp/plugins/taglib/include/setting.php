@@ -4,14 +4,14 @@ function read_json_file($file)
 {
     $json = @file_get_contents($file);
     if (!$json) {
-        $json = array();
+        $json = [];
     }
     return $json;
 }
 
 switch ($_POST['action']) {
     case 'getData':
-        echo read_json_file("/boot/config/plugins/taglib/taglib.json");
+        echo json_encode(json_decode(read_json_file("/boot/config/plugins/taglib/taglib.json")));
         break;
     case 'applyData':
         //持久化配置文件
