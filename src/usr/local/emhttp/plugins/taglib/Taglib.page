@@ -109,9 +109,11 @@ $cfg = parse_plugin_cfg($plugin);
                     let cell = document.createElement("td");
                     let cellButton = document.createElement("button");
                     cellButton.textContent = "删除";
-                    cellButton.style.textAlign = "center";
                     cellButton.style.margin = "0px";
-                    cellButton.onclick = 'delRow(' + i + ')';
+                    cellButton.onclick = function() {
+                        delRow(i);
+                    };
+                    cell.style.textAlign = "center";
                     cell.appendChild(cellButton);
                     newRow.appendChild(cell);
                     tableBody.appendChild(newRow);
