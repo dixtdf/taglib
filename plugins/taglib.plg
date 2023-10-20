@@ -1,6 +1,6 @@
 <?xml version='1.0' standalone='yes'?>
 <!DOCTYPE PLUGIN [
-<!ENTITY name      "Taglib">
+<!ENTITY name      "taglib">
 <!ENTITY author    "dixtdf">
 <!ENTITY version   "2023.10.20">
 <!ENTITY md5       "7b5f569741676d249d172f1d22e11113">
