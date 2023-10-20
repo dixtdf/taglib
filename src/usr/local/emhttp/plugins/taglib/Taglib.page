@@ -70,8 +70,8 @@ $cfg = parse_plugin_cfg($plugin);
     }
 
     function init() {
-        console.log("init-data");
         $.post(settingUrl, {action: 'getData'}, (data) => {
+            debugger
             if (data) {
                 tabData = data;
             }
@@ -163,7 +163,7 @@ $cfg = parse_plugin_cfg($plugin);
             alert("请检查排序是否填写");
             return;
         }
-debugger
+        debugger
         if (!tabData){
             tabData = [];
         }
