@@ -50,7 +50,6 @@ $cfg = parse_plugin_cfg($plugin);
     function applyData(settings) {
         $.post(settingUrl, {action: 'applyData', settings: JSON.stringify(settings)}, (data) => {
             if (data) {
-                init();
                 location.reload();
             }
         });
