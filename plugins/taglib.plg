@@ -13,7 +13,7 @@
 <PLUGIN name="&name;" author="&author;" version="&version;" launch="&launch;" pluginURL="&pluginURL;" icon="edit" support="https://github.com/dixtdf/taglib/issues">
 
 <CHANGES>
-###2023.10.18
+###2023.10.20
 - init
 </CHANGES>
 
