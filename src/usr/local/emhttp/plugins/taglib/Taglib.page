@@ -163,7 +163,7 @@ $cfg = parse_plugin_cfg($plugin);
             alert("请检查排序是否填写");
             return;
         }
-
+debugger
         if (!tabData){
             tabData = [];
         }
