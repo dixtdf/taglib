@@ -164,6 +164,9 @@ $cfg = parse_plugin_cfg($plugin);
             return;
         }
 
+        if (!tabData){
+            tabData = [];
+        }
         tabData.push({
             "label": label,
             "address": address,

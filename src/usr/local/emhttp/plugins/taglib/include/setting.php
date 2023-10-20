@@ -2,7 +2,7 @@
 
 function read_json_file($file)
 {
-    $json = json_decode(@file_get_contents($file), true);
+    $json = @file_get_contents($file);
     if (!$json) {
         $json = array();
     }
