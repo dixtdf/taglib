@@ -124,6 +124,7 @@ $cfg = parse_plugin_cfg($plugin);
         $.post(settingUrl, {action: 'applyData', settings: JSON.stringify(settings)}, (data) => {
             if (data) {
                 init();
+                location.reload();
             }
         });
     }
@@ -245,11 +246,20 @@ $cfg = parse_plugin_cfg($plugin);
             "height": height,
             "sort": sort
         });
+
+        table.querySelector('input[name="label"]').value = "";
+        table.querySelector('input[name="address"]').value = "";
+        table.querySelector('select[name="open"]').value = "tab";
+        table.querySelector('input[name="width"]').value = "1920px";
+        table.querySelector('input[name="height"]').value = "1080px";
+        table.querySelector('input[name="sort"]').value = "0";
+
         applyData(tabData);
     }
 
     function delRow(index) {
-        console.log(index);
+        tabData.splice(index, 1);
+        applyData(tabData);
     }
 
     init();
