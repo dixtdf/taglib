@@ -1,4 +1,5 @@
 #!/bin/bash
+git pull
 chmod 0755 -R ./src
 #获取当前目录
 BUILD_LINK="$(readlink -f .)"
