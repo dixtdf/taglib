@@ -4,7 +4,7 @@
 <!ENTITY author    "dixtdf">
 <!ENTITY version   "2023.11.30">
 <!ENTITY md5       "acfe968535d247bf46bbbd2e6c2dd0ee">
-<!ENTITY launch    "Utilities/taglib">
+<!ENTITY launch    "Settings/taglib">
 <!ENTITY plugdir   "/usr/local/emhttp/plugins/&name;">
 <!ENTITY github    "dixtdf/taglib">
 <!ENTITY pluginURL "https://raw.githubusercontent.com/&github;/master/plugins/&name;.plg">
