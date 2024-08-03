@@ -21,6 +21,15 @@ switch ($_POST['action']) {
         exec("/usr/local/emhttp/plugins/taglib/scripts/createPage.php");
         echo "applyData done";
         break;
+    case 'getLocale':
+        $configFilePath = "/boot/config/plugins/dynamix/dynamix.cfg";
+        if (file_exists($configFilePath)) {
+            $configContent = file_get_contents($configFilePath);
+            echo $configContent;
+        } else {
+            echo "";
+        }
+        break;
 }
 
 ?>
