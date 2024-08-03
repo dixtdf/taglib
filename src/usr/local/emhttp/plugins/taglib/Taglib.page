@@ -44,230 +44,28 @@ $cfg = parse_plugin_cfg($plugin);
 </style>
 
 <script>
-    let settingUrl = "/plugins/taglib/include/setting.php";
-    let tabData = [];
+    fetch('http://localhost:5173/index.html')
+        .then(response => response.text()) // 将响应转化为文本
+        .then(html => {
+            // 创建一个DOMParser实例
+            const parser = new DOMParser();
+            // 解析HTML字符串为一个文档对象
+            const doc = parser.parseFromString(html, 'text/html');
+            // 你可以直接操作这个文档对象
+            const content = doc.getElementById('app'); // 假设你要获取example.html中的一个特定元素
+            document.getElementById('addDiv').appendChild(content); // 将获取的内容插入到当前文档的指定位置
 
-    function applyData(settings) {
-        $.post(settingUrl, {action: 'applyData', settings: JSON.stringify(settings)}, (data) => {
-            if (data) {
-                location.reload();
-            }
+            import('http://localhost:5173/src/main.js')
+              .then(module => {
+                console.log(module);
+              })
+              .catch(error => {
+                console.error(error);
+              });
+        })
+        .catch(error => {
+            console.error('Error fetching HTML:', error);
         });
-    }
-
-    function toggleInput() {
-        let table = document.getElementById('addTag');
-        let width = table.querySelector('input[name="width"]');
-        let height = table.querySelector('input[name="height"]');
-        let adaptive = table.querySelector('input[name="adaptive"]:checked').value;
-        if (adaptive == 'true') {
-            width.disabled = true;
-            height.disabled = true;
-        } else {
-            width.disabled = false;
-            height.disabled = false;
-        }
-    }
-
-    function init() {
-        $.post(settingUrl, {action: 'getData'}, (data) => {
-            if (data) {
-                tabData = JSON.parse(data);
-
-                let tableBody = document.getElementById("tableBody");
-                while (tableBody.firstChild) {
-                    tableBody.removeChild(tableBody.firstChild);
-                }
-                if (tabData.length > 0) {
-                    document.getElementById('manageTag').style.display = 'table';
-                } else {
-                    document.getElementById('manageTag').style.display = 'none';
-                }
-                for (let i = 0; i < tabData.length; i++) {
-                    let datum = tabData[i];
-                    let newRow = document.createElement("tr");
-
-                    let keys = ["label", "address", "open", "adaptive", "width", "height", "sort"];
-
-                    for (let j = 0; j < keys.length; j++) {
-                        let key = keys[j];
-                        let cell = document.createElement("td");
-                        cell.textContent = datum[key];
-                        if (key == "adaptive" && datum[key] == "true") {
-                            cell.textContent = "是";
-                        } else if (key == "adaptive" && datum[key] == "false") {
-                            cell.textContent = "否";
-                        }
-                        if (key == "open" && datum[key] == "tab") {
-                            cell.textContent = "内置标签";
-                        } else if (key == "open" && datum[key] == "new") {
-                            cell.textContent = "新标签";
-                        }
-                        cell.id = key + i;
-                        newRow.appendChild(cell);
-                    }
-                    let cell = document.createElement("td");
-                    let cellButton = document.createElement("button");
-                    cellButton.textContent = "删除";
-                    cellButton.style.margin = "0px";
-                    cellButton.onclick = function() {
-                        delRow(i);
-                    };
-                    cell.style.textAlign = "center";
-                    cell.appendChild(cellButton);
-                    newRow.appendChild(cell);
-                    tableBody.appendChild(newRow);
-                }
-            }
-        });
-    }
-
-    function addRow() {
-        let table = document.getElementById('addTag');
-        let label = table.querySelector('input[name="label"]').value;
-        let address = table.querySelector('input[name="address"]').value;
-        let open = table.querySelector('select[name="open"]').value;
-        let adaptive = table.querySelector('input[name="adaptive"]:checked').value;
-        let width = table.querySelector('input[name="width"]').value;
-        let height = table.querySelector('input[name="height"]').value;
-        let sort = table.querySelector('input[name="sort"]').value;
-
-        if (!label) {
-            alert("请检查标签名称是否填写");
-            return;
-        }
-        if (!/^[A-Za-z].*$/.test(label)) {
-            alert("标签名称必须以英文开头");
-            return;
-        }
-        if (!address) {
-            alert("请检查地址是否填写");
-            return;
-        }
-        if (!open) {
-            alert("请检查打开方式是否选中");
-            return;
-        }
-        if (!adaptive) {
-            alert("请检查是否自适应是否选中");
-            return;
-        }
-        if (!width) {
-            alert("请检查宽度是否填写");
-            return;
-        }
-        if (!height) {
-            alert("请检查高度是否填写");
-            return;
-        }
-        if (!sort) {
-            alert("请检查排序是否填写");
-            return;
-        }
-        debugger
-        if (!tabData){
-            tabData = [];
-        }
-        tabData.push({
-            "label": label,
-            "address": address,
-            "open": open,
-            "adaptive": adaptive,
-            "width": width,
-            "height": height,
-            "sort": sort
-        });
-
-        table.querySelector('input[name="label"]').value = "";
-        table.querySelector('input[name="address"]').value = "";
-        table.querySelector('select[name="open"]').value = "tab";
-        table.querySelector('input[name="width"]').value = "1920px";
-        table.querySelector('input[name="height"]').value = "1080px";
-        table.querySelector('input[name="sort"]').value = "0";
-
-        applyData(tabData);
-    }
-
-    function delRow(index) {
-        tabData.splice(index, 1);
-        applyData(tabData);
-    }
-
-    $(function() {
-        init();
-    });
 </script>
 
-<table id="addTag">
-    <tbody>
-    <tr>
-        <th colspan="8">新增标签</th>
-    </tr>
-    <tr>
-        <th>标签名称</th>
-        <th>访问地址</th>
-        <th>打开方式</th>
-        <th style="min-width: 108px;">自适应布局</th>
-        <th>宽度(单位px)</th>
-        <th>高度(单位px)</th>
-        <th>排序</th>
-        <th style="min-width: 42px;">操作</th>
-    </tr>
-    <tr>
-        <td>
-            <div>标签名称:</div>
-            <input name="label" placeholder="标签名称" type="text" value="">
-        </td>
-        <td>
-            <div>访问地址:</div>
-            <input name="address" placeholder="http://127.0.0.1" type="text" value="">
-        </td>
-        <td>
-            <div>打开方式:</div>
-            <select name="open">
-                <option selected value="tab">内置标签</option>
-                <option value="new">新标签</option>
-            </select>
-        </td>
-        <td style="min-width: 108px;">
-            <div>自适应布局:</div>
-            <input checked name="adaptive" type="radio" value="true" onchange="toggleInput()"> 是
-            <input name="adaptive" type="radio" value="false" onchange="toggleInput()"> 否
-        </td>
-        <td>
-            <div>宽度:</div>
-            <input name="width" type="text" value="1920px" disabled>
-        </td>
-        <td>
-            <div>高度:</div>
-            <input name="height" type="text" value="1080px" disabled>
-        </td>
-        <td>
-            <div>排序:</div>
-            <input name="sort" type="number" value="0">
-        </td>
-        <td style="text-align: center;min-width: 42px;">
-            <button onclick="addRow()" style="margin: 0;">新增</button>
-        </td>
-    </tr>
-    </tbody>
-</table>
-<br/>
-<table id="manageTag" style="display: none;">
-    <thead>
-    <tr>
-        <th colspan="8">管理标签</th>
-    </tr>
-    <tr>
-        <th>标签名称</th>
-        <th>访问地址</th>
-        <th>打开方式</th>
-        <th>是否自适应布局</th>
-        <th>宽度(单位px)</th>
-        <th>高度(单位px)</th>
-        <th>排序</th>
-        <th>操作</th>
-    </tr>
-    </thead>
-    <tbody id="tableBody"></tbody>
-</table>
+<div id="addDiv"></div>
