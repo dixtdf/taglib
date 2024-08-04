@@ -3,6 +3,7 @@ import {ref} from 'vue'
 import {useI18n} from "vue-i18n";
 import axios from "axios";
 import ini from "ini";
+import AddEditView from "./AddEditView.vue";
 
 const {locale} = useI18n();
 
@@ -71,6 +72,16 @@ function init() {
   }).then(res => {
     tableData.value = res.data;
   });
+}
+
+const addEditView = ref(null);
+let flag = ref(false);
+
+function edit() {
+  flag.value = true;
+  if (addEditView.value) {
+    addEditView.value.openView();
+  }
 }
 
 //
@@ -177,6 +188,7 @@ function init() {
 </script>
 
 <template>
+  <AddEditView ref="addEditView" :flag="flag"/>
   <div style="padding: 0px 10px">
     <el-table border :data="tableData" style="width: 100%">
       <el-table-column prop="label_name" :label="$t('label_name')" width="120"/>
@@ -188,7 +200,7 @@ function init() {
       <el-table-column prop="sort" :label="$t('sort')" width="120"/>
       <el-table-column fixed="right" :label="$t('operation')">
         <template #default>
-          <el-button link type="primary" size="small">{{ $t('edit') }}</el-button>
+          <el-button link type="primary" size="small" @click="edit">{{ $t('edit') }}</el-button>
         </template>
       </el-table-column>
     </el-table>
