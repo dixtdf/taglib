@@ -7,83 +7,143 @@ import AddEditView from "./AddEditView.vue";
 
 const {locale} = useI18n();
 
+let settingUrl = ref("/plugins/taglib/include/setting.php");
+
 const changeLocale = (lang) => {
-  locale.value = lang;
+    locale.value = lang;
 };
 
-getLocale();
-init();
-
-function getLocale() {
-  let settingUrl = "/plugins/taglib/include/setting.php";
-  const params = new URLSearchParams()
-  params.append('action', "getLocale")
-  params.append('csrf_token', window.csrf_token)
-  axios({
-    method: "post",
-    url: settingUrl,
-    headers: {
-      "accept": "*/*",
-      "Content-Type": "application/x-www-form-urlencoded;charset=utf-8"
-    },
-    data: params,
-  }).then(res => {
-    try {
-      if (res.data) {
-        const config = ini.parse(res.data);
-        const locale = config.display.locale;
-        changeLocale(locale)
-      } else {
+const getLocale = () => {
+    const params = new URLSearchParams()
+    params.append('action', "getLocale")
+    params.append('csrf_token', window.csrf_token)
+    axios({
+        method: "post",
+        url: settingUrl.value,
+        headers: {
+            "accept": "*/*",
+            "Content-Type": "application/x-www-form-urlencoded;charset=utf-8"
+        },
+        data: params,
+    }).then(res => {
+        try {
+            if (res.data) {
+                const config = ini.parse(res.data);
+                const locale = config.display.locale;
+                changeLocale(locale)
+            } else {
+                changeLocale('')
+            }
+        } catch (e) {
+            changeLocale('')
+        }
+    }).catch(error => {
         changeLocale('')
-      }
-    } catch (e) {
-      changeLocale('')
-    }
-  }).catch(error => {
-    changeLocale('')
-  });
+    });
 }
 
 let tableData = ref([
-  {
-    label_name: '2016-05-03',
-    visit_url: 'Tom',
-    open_mode: 'California',
-    adaptive_layout: 'Los Angeles',
-    width: 'No. 189, Grove St, Los Angeles',
-    height: 'CA 90036',
-    sort: 'Home',
-  },
+    {
+        label_name: '2016-05-03',
+        visit_url: 'Tom',
+        open_mode: 'California',
+        adaptive_layout: 'Los Angeles',
+        width: 'No. 189, Grove St, Los Angeles',
+        height: 'CA 90036',
+        sort: 'Home',
+    },
 ]);
 
-function init() {
-  let settingUrl = "/plugins/taglib/include/setting.php";
-  const params = new URLSearchParams()
-  params.append('action', "getData")
-  params.append('csrf_token', window.csrf_token)
-  axios({
-    method: "post",
-    url: settingUrl,
-    headers: {
-      "accept": "*/*",
-      "Content-Type": "application/x-www-form-urlencoded;charset=utf-8"
-    },
-    data: params,
-  }).then(res => {
-    tableData.value = res.data;
-  });
+const init = () => {
+    const params = new URLSearchParams()
+    params.append('action', "getData")
+    params.append('csrf_token', window.csrf_token)
+    axios({
+        method: "post",
+        url: settingUrl.value,
+        headers: {
+            "accept": "*/*",
+            "Content-Type": "application/x-www-form-urlencoded;charset=utf-8"
+        },
+        data: params,
+    }).then(res => {
+        tableData.value = res.data;
+    });
 }
 
-const addEditView = ref(null);
+const applyData = (data) => {
+    const params = new URLSearchParams()
+    params.append('action', "applyData")
+    params.append('settings', JSON.stringify(data))
+    params.append('csrf_token', window.csrf_token)
+    axios({
+        method: "post",
+        url: settingUrl.value,
+        headers: {
+            "accept": "*/*",
+            "Content-Type": "application/x-www-form-urlencoded;charset=utf-8"
+        },
+        data: params,
+    }).then(res => {
+
+    }).finally(() => {
+        init();
+        dialogFormVisible.value = false
+    });
+}
+
+let addEditView = ref(null);
 let flag = ref(false);
+let editData = ref(null);
 
-function edit() {
-  flag.value = true;
-  if (addEditView.value) {
-    addEditView.value.openView();
-  }
+let dialogFormVisible = ref(false);
+
+const add = () => {
+    dialogFormVisible.value = true;
+    flag.value = false;
+    editData.value = null;
 }
 
+const edit = (row) => {
+    dialogFormVisible.value = true;
+    flag.value = true;
+    editData.value = row;
+}
+
+const del = (row) => {
+    let exist = -1;
+    let tableDataValue = tableData.value;
+    for (let index in tableDataValue) {
+        if (row.id == tableDataValue[index].id) {
+            exist = index;
+        }
+    }
+    if (exist != -1) {
+        tableDataValue.splice(exist, 1);
+    }
+    applyData(tableDataValue);
+}
+
+const confirm = () => {
+    addEditView.value.submitForm((form) => {
+        let exist = -1;
+        let tableDataValue = tableData.value;
+        for (let index in tableDataValue) {
+            if (form.id == tableDataValue[index].id) {
+                exist = index;
+            }
+        }
+        if (exist == -1) {
+            tableDataValue.push(form);
+        } else {
+            tableDataValue[exist] = form;
+        }
+        applyData(tableDataValue);
+    });
+}
+
+getLocale();
+init();
 //
 // let tabData = [];
 //
@@ -188,45 +248,57 @@ function edit() {
 </script>
 
 <template>
-  <AddEditView ref="addEditView" :flag="flag"/>
-  <div style="padding: 0px 10px">
-    <el-table border :data="tableData" style="width: 100%">
-      <el-table-column prop="label_name" :label="$t('label_name')" width="120"/>
-      <el-table-column prop="visit_url" :label="$t('visit_url')"/>
-      <el-table-column prop="open_mode" :label="$t('open_mode')" width="120"/>
-      <el-table-column prop="adaptive_layout" :label="$t('adaptive_layout')" width="120"/>
-      <el-table-column prop="width" :label="$t('width')" width="120"/>
-      <el-table-column prop="height" :label="$t('height')" width="120"/>
-      <el-table-column prop="sort" :label="$t('sort')" width="120"/>
-      <el-table-column fixed="right" :label="$t('operation')">
-        <template #default>
-          <el-button link type="primary" size="small" @click="edit">{{ $t('edit') }}</el-button>
+    <el-dialog :show-close="false" v-model="dialogFormVisible" :title="$t('dialog_title')" width="800">
+        <AddEditView v-if="dialogFormVisible" ref="addEditView" :flag="flag" :editData="editData"/>
+        <template #footer>
+            <div class="dialog-footer">
+                <el-button @click="dialogFormVisible = false">{{ $t('cancel') }}</el-button>
+                <el-button type="primary" @click="confirm">
+                    {{ $t('confirm') }}
+                </el-button>
+            </div>
         </template>
-      </el-table-column>
-    </el-table>
-  </div>
+    </el-dialog>
+    <div style="padding: 0px 10px">
+        <el-button type="primary" @click="add">{{ $t('add') }}</el-button>
+        <el-table border :data="tableData" style="width: 100%">
+            <el-table-column prop="label_name" :label="$t('label_name')" width="120"/>
+            <el-table-column prop="visit_url" :label="$t('visit_url')"/>
+            <el-table-column prop="open_mode" :label="$t('open_mode')" width="120"/>
+            <el-table-column prop="adaptive_layout" :label="$t('adaptive_layout')" width="120"/>
+            <el-table-column prop="width" :label="$t('width')" width="120"/>
+            <el-table-column prop="height" :label="$t('height')" width="120"/>
+            <el-table-column prop="sort" :label="$t('sort')" width="120"/>
+            <el-table-column fixed="right" :label="$t('operation')">
+                <template #default="scope">
+                    <el-button link type="primary" size="small" @click="edit(scope.row)">{{ $t('edit') }}</el-button>
+                    <el-button link type="primary" size="small" @click="del(scope.row)">{{ $t('del') }}</el-button>
+                </template>
+            </el-table-column>
+        </el-table>
+    </div>
 </template>
 
 <style scoped lang="css">
 .read-the-docs {
-  color: #888;
+    color: #888;
 }
 
 :deep(table) {
-  margin: 0;
+    margin: 0;
 }
 
 </style>
 <style>
 .el-table th.el-table__cell {
-  background-color: transparent;
+    background-color: transparent;
 }
 
 .el-table.is-scrolling-none th.el-table-fixed-column--left, .el-table.is-scrolling-none th.el-table-fixed-column--right {
-  background-color: transparent;
+    background-color: transparent;
 }
 
 .el-table tr {
-  background-color: transparent;
+    background-color: transparent;
 }
 </style>

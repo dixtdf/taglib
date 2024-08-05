@@ -1,112 +1,125 @@
 <script setup>
-import {reactive, ref} from 'vue'
+import {computed, onMounted, ref} from 'vue'
+import {useI18n} from "vue-i18n";
+import {v4 as uuidv4} from "uuid";
+
+const {locale,t} = useI18n();
 
 const props = defineProps({
-  flag: {
-    type: Boolean,
-    required: true,
-    default: false,
-  }
+    flag: {
+        type: Boolean,
+        required: true,
+        default: false,
+    },
+    editData: {
+        type: Object,
+        required: false,
+        default: null
+    }
 });
 
-const { flag } = props;
+const {flag, editData} = props;
 
-const activeNames = ref([])
-const handleChange = (val) => {
-  console.log(val)
-}
-
-const form = reactive({
-  name: '',
-  region: '',
-  date1: '',
-  date2: '',
-  delivery: false,
-  type: [],
-  resource: '',
-  desc: '',
+onMounted(() => {
+    if (flag) {
+        form.value = editData;
+    }
 })
 
-const onSubmit = () => {
-  console.log('submit!')
-}
-const openView = () => {
+let form = ref({
+    id: '',
+    label_name: '',
+    visit_url: 'https://google.com',
+    // tab/new
+    open_mode: 'tab',
+    adaptive_layout: true,
+    width: 1920,
+    height: 1080,
+    sort: 0,
+})
 
+const ruleFormRef = ref(null)
+const rules = computed(() => ({
+    label_name: [
+        {required: true, message: t('required_message'), trigger: 'blur'},
+    ],
+    visit_url: [
+        {required: true, message: t('required_message'), trigger: 'blur'},
+    ],
+    open_mode: [
+        {required: true, message: t('required_message'), trigger: 'blur'},
+    ],
+    adaptive_layout: [
+        {required: form.open_mode === 'tab', message: t('required_message'), trigger: 'blur'},
+    ],
+    width: [
+        {required: !form.adaptive_layout, message: t('required_message'), trigger: 'blur'},
+    ],
+    height: [
+        {required: !form.adaptive_layout, message: t('required_message'), trigger: 'blur'},
+    ],
+    sort: [
+        {required: true, message: t('required_message'), trigger: 'blur'},
+    ],
+}));
+
+const submitForm = (callback) => {
+    ruleFormRef.value.validate((valid, fields) => {
+        if (valid) {
+            if (!flag) {
+                form.value.id = uuidv4().replaceAll("-", "")
+            }
+            callback(form.value);
+        } else {
+            console.log('error submit!', fields)
+        }
+    })
 }
+defineExpose({
+    submitForm
+});
 </script>
 
 <template>
-  <div class="demo-collapse">
-    <el-collapse v-model="activeNames" @change="handleChange">
-      <el-collapse-item title="Consistency" name="1">
-        <el-form :model="form" label-width="auto" style="max-width: 600px">
-          <el-form-item label="Activity name">
-            <el-input v-model="form.name"/>
-          </el-form-item>
-          <el-form-item label="Activity zone">
-            <el-select v-model="form.region" placeholder="please select your zone">
-              <el-option label="Zone one" value="shanghai"/>
-              <el-option label="Zone two" value="beijing"/>
-            </el-select>
-          </el-form-item>
-          <el-form-item label="Activity time">
-            <el-col :span="11">
-              <el-date-picker
-                  v-model="form.date1"
-                  type="date"
-                  placeholder="Pick a date"
-                  style="width: 100%"
-              />
-            </el-col>
-            <el-col :span="2" class="text-center">
-              <span class="text-gray-500">-</span>
-            </el-col>
-            <el-col :span="11">
-              <el-time-picker
-                  v-model="form.date2"
-                  placeholder="Pick a time"
-                  style="width: 100%"
-              />
-            </el-col>
-          </el-form-item>
-          <el-form-item label="Instant delivery">
-            <el-switch v-model="form.delivery"/>
-          </el-form-item>
-          <el-form-item label="Activity type">
-            <el-checkbox-group v-model="form.type">
-              <el-checkbox value="Online activities" name="type">
-                Online activities
-              </el-checkbox>
-              <el-checkbox value="Promotion activities" name="type">
-                Promotion activities
-              </el-checkbox>
-              <el-checkbox value="Offline activities" name="type">
-                Offline activities
-              </el-checkbox>
-              <el-checkbox value="Simple brand exposure" name="type">
-                Simple brand exposure
-              </el-checkbox>
-            </el-checkbox-group>
-          </el-form-item>
-          <el-form-item label="Resources">
-            <el-radio-group v-model="form.resource">
-              <el-radio value="Sponsor">Sponsor</el-radio>
-              <el-radio value="Venue">Venue</el-radio>
-            </el-radio-group>
-          </el-form-item>
-          <el-form-item label="Activity form">
-            <el-input v-model="form.desc" type="textarea"/>
-          </el-form-item>
-          <el-form-item>
-            <el-button type="primary" @click="onSubmit">Create</el-button>
-            <el-button>Cancel</el-button>
-          </el-form-item>
+    <div class="demo-collapse">
+        <el-form ref="ruleFormRef" :rules="rules" :model="form" label-width="auto" style="max-width: 600px">
+            <el-form-item :label="$t('label_name')" prop="label_name">
+                <el-input v-model="form.label_name"/>
+            </el-form-item>
+            <el-form-item :label="$t('visit_url')" prop="visit_url">
+                <el-input v-model="form.visit_url"/>
+            </el-form-item>
+            <el-form-item :label="$t('open_mode')" prop="open_mode">
+                <el-radio-group v-model="form.open_mode">
+                    <el-radio value="tab">tab</el-radio>
+                    <el-radio value="new">new</el-radio>
+                </el-radio-group>
+            </el-form-item>
+            <el-form-item :label="$t('adaptive_layout')" v-if="form.open_mode == 'tab'" prop="adaptive_layout">
+                <el-switch v-if="form.open_mode == 'tab'" v-model="form.adaptive_layout"/>
+            </el-form-item>
+            <el-form-item :label="$t('width')" v-if="!form.adaptive_layout && form.open_mode=='tab'" prop="width">
+                <el-input-number v-if="!form.adaptive_layout && form.open_mode=='tab'" v-model="form.width"/>
+            </el-form-item>
+            <el-form-item :label="$t('height')" v-if="!form.adaptive_layout && form.open_mode=='tab'" prop="height">
+                <el-input-number v-if="!form.adaptive_layout && form.open_mode=='tab'" v-model="form.height"/>
+            </el-form-item>
+            <el-form-item :label="$t('sort')" prop="sort">
+                <el-input-number v-model="form.sort"/>
+            </el-form-item>
         </el-form>
-      </el-collapse-item>
-    </el-collapse>
-  </div>
+    </div>
 </template>
 
 <style scoped>
+</style>
+<style>
+.el-input-number {
+    width: 100%;
+    border: none;
+}
 
+.el-input__inner {
+    border: none !important;
+}
 </style>

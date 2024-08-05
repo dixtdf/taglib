@@ -8,6 +8,11 @@ const uk_UA =   {
     "height": "Висота (px)",
     "sort": "Сортування",
     "operation": "Операція",
-    "edit": "Редагувати"
+    "edit": "Редагувати",
+    "del": "删除",
+    "dialog_title": "操作",
+    "confirm": "提交",
+    "cancel": "取消",
+    "required_message": "请输入活动表格",
   }
 export default uk_UA

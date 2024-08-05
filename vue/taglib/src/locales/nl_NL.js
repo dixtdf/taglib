@@ -8,6 +8,11 @@ const nl_NL = {
     "height": "Hoogte (px)",
     "sort": "Sorteren",
     "operation": "Actie",
-    "edit": "Bewerken"
+    "edit": "Bewerken",
+    "del": "删除",
+    "dialog_title": "操作",
+    "confirm": "提交",
+    "cancel": "取消",
+    "required_message": "请输入活动表格",
   }
 export default nl_NL

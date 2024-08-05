@@ -8,6 +8,11 @@ const ru_RU =  {
     "height": "Высота (px)",
     "sort": "Сортировка",
     "operation": "Операция",
-    "edit": "Редактировать"
+    "edit": "Редактировать",
+    "del": "删除",
+    "dialog_title": "操作",
+    "confirm": "提交",
+    "cancel": "取消",
+    "required_message": "请输入活动表格",
   }
 export default ru_RU

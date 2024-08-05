@@ -8,6 +8,11 @@ const sv_SE =   {
     "height": "Höjd (px)",
     "sort": "Sortera",
     "operation": "Operation",
-    "edit": "Redigera"
+    "edit": "Redigera",
+    "del": "删除",
+    "dialog_title": "操作",
+    "confirm": "提交",
+    "cancel": "取消",
+    "required_message": "请输入活动表格",
   }
 export default sv_SE

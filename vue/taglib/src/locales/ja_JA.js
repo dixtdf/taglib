@@ -8,6 +8,11 @@ const ja_JA = {
     "height": "高さ（px）",
     "sort": "ソート",
     "operation": "操作",
-    "edit": "編集"
+    "edit": "編集",
+    "del": "删除",
+    "dialog_title": "操作",
+    "confirm": "提交",
+    "cancel": "取消",
+    "required_message": "请输入活动表格",
   }
 export default ja_JA

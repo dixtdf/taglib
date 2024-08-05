@@ -8,6 +8,11 @@ const bn_BN =   {
     "height": "উচ্চতা (পিক্সেল)",
     "sort": "বাছাই",
     "operation": "অপারেশন",
-    "edit": "সম্পাদনা"
+    "edit": "সম্পাদনা",
+    "del": "删除",
+    "dialog_title": "操作",
+    "confirm": "提交",
+    "cancel": "取消",
+    "required_message": "请输入活动表格",
   }
 export default bn_BN

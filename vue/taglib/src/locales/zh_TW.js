@@ -8,6 +8,11 @@ const zh_TW =    {
     "height": "高度 (px)",
     "sort": "排序",
     "operation": "操作",
-    "edit": "編輯"
+    "edit": "編輯",
+    "del": "删除",
+    "dialog_title": "操作",
+    "confirm": "提交",
+    "cancel": "取消",
+    "required_message": "请输入活动表格",
   }
 export default zh_TW

@@ -8,6 +8,11 @@ const ko_KO =   {
     "height": "높이 (px)",
     "sort": "정렬",
     "operation": "작업",
-    "edit": "편집"
+    "edit": "편집",
+    "del": "删除",
+    "dialog_title": "操作",
+    "confirm": "提交",
+    "cancel": "取消",
+    "required_message": "请输入活动表格",
   }
 export default ko_KO

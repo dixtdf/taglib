@@ -8,6 +8,11 @@ const da_DA =  {
     "height": "Højde (px)",
     "sort": "Sorter",
     "operation": "Handling",
-    "edit": "Rediger"
+    "edit": "Rediger",
+    "del": "删除",
+    "dialog_title": "操作",
+    "confirm": "提交",
+    "cancel": "取消",
+    "required_message": "请输入活动表格",
   }
 export default da_DA
