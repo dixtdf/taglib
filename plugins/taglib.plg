@@ -52,7 +52,6 @@ The 'remove' script.
 <INLINE>
 removepkg &name;-&version;-x86_64-1
 rm -rf &plugdir;
-cp /boot/config/plugins/&name/taglib.json /boot/config/plugins/&name/taglib.json.bak;
 rm -rf /boot/config/plugins/&name;
 rm -rf /usr/local/emhttp/plugins/taglibpage;
 </INLINE>
