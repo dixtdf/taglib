@@ -7,11 +7,9 @@ $plugin = 'taglib';
 $cfg = parse_plugin_cfg($plugin);
 ?>
 
-<style>
-</style>
-
+<link rel="stylesheet" href="/plugins/taglib/dist/assets/index-BsZFcA8Y.css">
 <script>
-    fetch('http://localhost:5173/index.html')
+    fetch('/plugins/taglib/dist/index.html')
         .then(response => response.text()) // 将响应转化为文本
         .then(html => {
             // 创建一个DOMParser实例
@@ -22,7 +20,7 @@ $cfg = parse_plugin_cfg($plugin);
             const content = doc.getElementById('app'); // 假设你要获取example.html中的一个特定元素
             document.getElementById('taglib-content').appendChild(content); // 将获取的内容插入到当前文档的指定位置
 
-            import('http://localhost:5173/src/main.js')
+            import('/plugins/taglib/dist/assets/index-BhLmXJeB.js')
               .then(module => {
                 console.log(module);
               })
