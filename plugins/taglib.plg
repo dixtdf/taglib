@@ -3,7 +3,7 @@
 <!ENTITY name      "taglib">
 <!ENTITY author    "dixtdf">
 <!ENTITY version   "2023.11.30">
-<!ENTITY md5       "acfe968535d247bf46bbbd2e6c2dd0ee">
+<!ENTITY md5       "0fb2cd4c698507a0d946b34d71954258">
 <!ENTITY launch    "Settings/taglib">
 <!ENTITY plugdir   "/usr/local/emhttp/plugins/&name;">
 <!ENTITY github    "dixtdf/taglib">
