@@ -13,7 +13,7 @@
 <PLUGIN name="&name;" author="&author;" version="&version;" launch="&launch;" pluginURL="&pluginURL;" icon="edit" support="https://github.com/dixtdf/taglib/issues">
 
 <CHANGES>
-###2024.8.3
+###2024.08.05
 - 这是一次史诗级别的更新
 ###2023.11.30
 - 修复重启后无法加载标签的问题
