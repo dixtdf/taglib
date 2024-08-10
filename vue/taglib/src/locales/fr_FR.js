@@ -9,10 +9,10 @@ const fr_FR =   {
     "sort": "Trier",
     "operation": "Opération",
     "edit": "Éditer",
-    "del": "删除",
-    "dialog_title": "操作",
-    "confirm": "提交",
-    "cancel": "取消",
-    "required_message": "请输入活动表格",
+    "del": "supprimer",
+    "dialog_title": "Opération",
+    "confirm": "Confirmer",
+    "cancel": "Annuler",
+    "required_message": "Veuillez saisir le formulaire d'activité",
   }
 export default fr_FR

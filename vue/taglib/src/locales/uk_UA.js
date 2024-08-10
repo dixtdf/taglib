@@ -9,10 +9,10 @@ const uk_UA =   {
     "sort": "Сортування",
     "operation": "Операція",
     "edit": "Редагувати",
-    "del": "删除",
-    "dialog_title": "操作",
-    "confirm": "提交",
-    "cancel": "取消",
-    "required_message": "请输入活动表格",
+    "del": "видалити",
+    "dialog_title": "Дія",
+    "confirm": "Підтвердити",
+    "cancel": "Скасувати",
+    "required_message": "Будь ласка, введіть таблицю діяльності",
   }
 export default uk_UA

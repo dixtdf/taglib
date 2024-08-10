@@ -9,10 +9,10 @@ const zh_TW =    {
     "sort": "排序",
     "operation": "操作",
     "edit": "編輯",
-    "del": "删除",
-    "dialog_title": "操作",
-    "confirm": "提交",
+    "del": "刪除",
+    "dialog_title": "動作",
+    "confirm": "確認",
     "cancel": "取消",
-    "required_message": "请输入活动表格",
+    "required_message": "請輸入活動表單",
   }
 export default zh_TW

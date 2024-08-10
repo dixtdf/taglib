@@ -9,10 +9,10 @@ const lv_LV =   {
     "sort": "Kārtot",
     "operation": "Darbība",
     "edit": "Rediģēt",
-    "del": "删除",
-    "dialog_title": "操作",
-    "confirm": "提交",
-    "cancel": "取消",
-    "required_message": "请输入活动表格",
+    "del": "dzēst",
+    "dialog_title": "Darbība",
+    "confirm": "Apstiprināt",
+    "cancel": "Atcelt",
+    "required_message": "Lūdzu, ievadi darbības tabulu",
   }
 export default lv_LV

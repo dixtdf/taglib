@@ -9,10 +9,10 @@ const hu_HU =   {
     "sort": "Rendezés",
     "operation": "Művelet",
     "edit": "Szerkesztés",
-    "del": "删除",
-    "dialog_title": "操作",
-    "confirm": "提交",
-    "cancel": "取消",
-    "required_message": "请输入活动表格",
+    "del": "törlés",
+    "dialog_title": "Operáció",
+    "confirm": "Bekerdni",
+    "cancel": "Mégse",
+    "required_message": "Kérjük, beírjon a tevékenységi táblát",
   }
 export default hu_HU

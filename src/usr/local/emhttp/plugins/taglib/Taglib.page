@@ -20,7 +20,7 @@ $cfg = parse_plugin_cfg($plugin);
             const content = doc.getElementById('app'); // 假设你要获取example.html中的一个特定元素
             document.getElementById('taglib-content').appendChild(content); // 将获取的内容插入到当前文档的指定位置
 
-            import('/plugins/taglib/dist/assets/index-BhLmXJeB.js')
+            import('/plugins/taglib/dist/assets/index-DUUxhTHj.js')
               .then(module => {
                 console.log(module);
               })

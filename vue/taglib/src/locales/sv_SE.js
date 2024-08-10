@@ -9,10 +9,10 @@ const sv_SE =   {
     "sort": "Sortera",
     "operation": "Operation",
     "edit": "Redigera",
-    "del": "删除",
-    "dialog_title": "操作",
-    "confirm": "提交",
-    "cancel": "取消",
-    "required_message": "请输入活动表格",
+    "del": "radera",
+    "dialog_title": "Handling",
+    "confirm": "Bekräfta",
+    "cancel": "Avbryta",
+    "required_message": "Skriv in aktivitetstabellen",
   }
 export default sv_SE

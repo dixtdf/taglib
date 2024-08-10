@@ -9,10 +9,10 @@ const it_IT =   {
     "sort": "Ordina",
     "operation": "Operazione",
     "edit": "Modifica",
-    "del": "删除",
-    "dialog_title": "操作",
-    "confirm": "提交",
-    "cancel": "取消",
-    "required_message": "请输入活动表格",
+    "del": "eliminare",
+    "dialog_title": "Azione",
+    "confirm": "Confermare",
+    "cancel": "Annullare",
+    "required_message": "Per favore, inserisci il modulo dell'attività",
   }
 export default it_IT

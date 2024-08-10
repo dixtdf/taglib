@@ -9,10 +9,10 @@ const ro_RO =   {
     "sort": "Sortare",
     "operation": "Operație",
     "edit": "Editați",
-    "del": "删除",
-    "dialog_title": "操作",
-    "confirm": "提交",
-    "cancel": "取消",
-    "required_message": "请输入活动表格",
+    "del": "șterge",
+    "dialog_title": "Acțiune",
+    "confirm": "Confirma",
+    "cancel": "Anulare",
+    "required_message": "Vă rog să introduceți tabla de activitate",
   }
 export default ro_RO

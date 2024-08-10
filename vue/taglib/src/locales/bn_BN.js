@@ -9,10 +9,10 @@ const bn_BN =   {
     "sort": "বাছাই",
     "operation": "অপারেশন",
     "edit": "সম্পাদনা",
-    "del": "删除",
-    "dialog_title": "操作",
-    "confirm": "提交",
-    "cancel": "取消",
-    "required_message": "请输入活动表格",
+    "del": "সরানো",
+    "dialog_title": "অপারেশন",
+    "confirm": "মোকাবি",
+    "cancel": "ব্যাহত করা",
+    "required_message": "আগ্রহজনক ফর্মটি চিনতে দিন",
   }
 export default bn_BN

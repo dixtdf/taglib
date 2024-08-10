@@ -9,10 +9,10 @@ const pl_PL =   {
     "sort": "Sortuj",
     "operation": "Operacja",
     "edit": "Edytuj",
-    "del": "删除",
-    "dialog_title": "操作",
-    "confirm": "提交",
-    "cancel": "取消",
-    "required_message": "请输入活动表格",
+    "del": "usunąć",
+    "dialog_title": "Operacja",
+    "confirm": "Potwierdź",
+    "cancel": "Anuluj",
+    "required_message": "Proszę wprowadzić formularz działania",
   }
 export default pl_PL

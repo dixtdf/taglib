@@ -9,10 +9,10 @@ const en_US = {
     "sort": "Sort",
     "operation": "Operation",
     "edit": "Edit",
-    "del": "删除",
-    "dialog_title": "操作",
-    "confirm": "提交",
-    "cancel": "取消",
-    "required_message": "请输入活动表格",
+    "del": "Delete",
+    "dialog_title": "Operation",
+    "confirm": "Submit",
+    "cancel": "Cancel",
+    "required_message":"Please enter the activity form"
 }
 export default en_US

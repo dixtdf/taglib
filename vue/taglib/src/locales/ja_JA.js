@@ -9,10 +9,10 @@ const ja_JA = {
     "sort": "ソート",
     "operation": "操作",
     "edit": "編集",
-    "del": "删除",
+    "del": "削除",
     "dialog_title": "操作",
-    "confirm": "提交",
-    "cancel": "取消",
-    "required_message": "请输入活动表格",
+    "confirm": "確認",
+    "cancel": "キャンセル",
+    "required_message": "活動表を入力してください",
   }
 export default ja_JA

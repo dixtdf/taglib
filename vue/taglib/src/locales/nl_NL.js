@@ -9,10 +9,10 @@ const nl_NL = {
     "sort": "Sorteren",
     "operation": "Actie",
     "edit": "Bewerken",
-    "del": "删除",
-    "dialog_title": "操作",
-    "confirm": "提交",
-    "cancel": "取消",
-    "required_message": "请输入活动表格",
+    "del": "verwijderen",
+    "dialog_title": "Actie",
+    "confirm": "Bevestigen",
+    "cancel": "Annuleren",
+    "required_message": "Vul het activiteitenvormulier in",
   }
 export default nl_NL

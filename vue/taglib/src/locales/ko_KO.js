@@ -9,10 +9,10 @@ const ko_KO =   {
     "sort": "정렬",
     "operation": "작업",
     "edit": "편집",
-    "del": "删除",
-    "dialog_title": "操作",
-    "confirm": "提交",
-    "cancel": "取消",
-    "required_message": "请输入活动表格",
+    "del": "삭제",
+    "dialog_title": "작업",
+    "confirm": "확인",
+    "cancel": "취소",
+    "required_message": "활동 표를 입력하세요.",
   }
 export default ko_KO

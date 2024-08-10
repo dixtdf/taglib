@@ -9,10 +9,10 @@ const da_DA =  {
     "sort": "Sorter",
     "operation": "Handling",
     "edit": "Rediger",
-    "del": "删除",
-    "dialog_title": "操作",
-    "confirm": "提交",
-    "cancel": "取消",
-    "required_message": "请输入活动表格",
+    "del": "slette",
+    "dialog_title": "Handling",
+    "confirm": "Bekræfte",
+    "cancel": "Afbestille",
+    "required_message": "Indtast aktivitetstabellen",
   }
 export default da_DA

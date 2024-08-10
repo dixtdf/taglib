@@ -9,10 +9,10 @@ const hr_HR =   {
     "sort": "Sortiraj",
     "operation": "Operacija",
     "edit": "Uredi",
-    "del": "删除",
-    "dialog_title": "操作",
-    "confirm": "提交",
-    "cancel": "取消",
-    "required_message": "请输入活动表格",
+    "del": "obrisi",
+    "dialog_title": "Radnja",
+    "confirm": "Potvrditi",
+    "cancel": "Otkaži",
+    "required_message": "Molimo vas, unesite aktivnost formular",
   }
 export default hr_HR

@@ -9,10 +9,10 @@ const pt_PT =  {
     "sort": "Ordenar",
     "operation": "Operação",
     "edit": "Editar",
-    "del": "删除",
-    "dialog_title": "操作",
-    "confirm": "提交",
-    "cancel": "取消",
-    "required_message": "请输入活动表格",
+    "del": "apagar",
+    "dialog_title": "Operação",
+    "confirm": "Confirmar",
+    "cancel": "Cancelar",
+    "required_message": "Por favor, introduza o formulário de actividade",
   }
 export default pt_PT
