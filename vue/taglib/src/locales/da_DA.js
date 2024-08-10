@@ -8,6 +8,7 @@ const da_DA =  {
     "height": "Højde (px)",
     "sort": "Sorter",
     "operation": "Handling",
+    "add": "Tilføje",
     "edit": "Rediger",
     "del": "slette",
     "dialog_title": "Handling",

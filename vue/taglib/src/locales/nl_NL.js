@@ -8,6 +8,7 @@ const nl_NL = {
     "height": "Hoogte (px)",
     "sort": "Sorteren",
     "operation": "Actie",
+    "add": "Toevoegen",
     "edit": "Bewerken",
     "del": "verwijderen",
     "dialog_title": "Actie",

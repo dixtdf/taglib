@@ -8,6 +8,7 @@ const ar_AR =   {
     "height": "الارتفاع (بكسل)",
     "sort": "فرز",
     "operation": "عملية",
+    "add": "إضافة",
     "edit": "تحرير",
     "del": "حذف",
     "dialog_title": "عملية",

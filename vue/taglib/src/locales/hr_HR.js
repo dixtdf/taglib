@@ -8,6 +8,7 @@ const hr_HR =   {
     "height": "Visina (px)",
     "sort": "Sortiraj",
     "operation": "Operacija",
+    "add": "Dodati",
     "edit": "Uredi",
     "del": "obrisi",
     "dialog_title": "Radnja",

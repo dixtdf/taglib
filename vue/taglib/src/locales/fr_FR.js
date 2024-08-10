@@ -8,6 +8,7 @@ const fr_FR =   {
     "height": "Hauteur (px)",
     "sort": "Trier",
     "operation": "Opération",
+    "add": "Ajouter",
     "edit": "Éditer",
     "del": "supprimer",
     "dialog_title": "Opération",

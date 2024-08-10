@@ -8,6 +8,7 @@ const ja_JA = {
     "height": "高さ（px）",
     "sort": "ソート",
     "operation": "操作",
+    "add": "追加",
     "edit": "編集",
     "del": "削除",
     "dialog_title": "操作",

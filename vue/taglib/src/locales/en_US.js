@@ -8,6 +8,7 @@ const en_US = {
     "height": "Height (px)",
     "sort": "Sort",
     "operation": "Operation",
+    "add": "Add",
     "edit": "Edit",
     "del": "Delete",
     "dialog_title": "Operation",

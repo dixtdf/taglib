@@ -8,6 +8,7 @@ const zh_TW =    {
     "height": "高度 (px)",
     "sort": "排序",
     "operation": "操作",
+    "add": "新增",
     "edit": "編輯",
     "del": "刪除",
     "dialog_title": "動作",

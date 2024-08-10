@@ -8,6 +8,7 @@ const bn_BN =   {
     "height": "উচ্চতা (পিক্সেল)",
     "sort": "বাছাই",
     "operation": "অপারেশন",
+    "add": "যোগ করা",
     "edit": "সম্পাদনা",
     "del": "সরানো",
     "dialog_title": "অপারেশন",

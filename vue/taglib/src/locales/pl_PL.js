@@ -8,6 +8,7 @@ const pl_PL =   {
     "height": "Wysokość (px)",
     "sort": "Sortuj",
     "operation": "Operacja",
+    "add": "Doda",
     "edit": "Edytuj",
     "del": "usunąć",
     "dialog_title": "Operacja",

@@ -8,6 +8,7 @@ const zh_CN = {
     "height": "高度(单位px)",
     "sort": "排序",
     "operation": "操作",
+    "add": "增加",
     "edit": "编辑",
     "del": "删除",
     "dialog_title": "操作",

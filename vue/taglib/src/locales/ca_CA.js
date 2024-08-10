@@ -8,6 +8,7 @@ const ca_CA =   {
     "height": "Alçada (px)",
     "sort": "Ordenar",
     "operation": "Operació",
+    "add": "Afegir",
     "edit": "Editar",
     "del": "suprimir",
     "dialog_title": "Operació",

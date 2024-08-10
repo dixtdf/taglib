@@ -8,6 +8,7 @@ const sv_SE =   {
     "height": "Höjd (px)",
     "sort": "Sortera",
     "operation": "Operation",
+    "add": "Lägga till",
     "edit": "Redigera",
     "del": "radera",
     "dialog_title": "Handling",

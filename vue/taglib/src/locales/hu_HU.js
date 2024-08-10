@@ -8,6 +8,7 @@ const hu_HU =   {
     "height": "Magasság (px)",
     "sort": "Rendezés",
     "operation": "Művelet",
+    "add": "Hozzáadni",
     "edit": "Szerkesztés",
     "del": "törlés",
     "dialog_title": "Operáció",

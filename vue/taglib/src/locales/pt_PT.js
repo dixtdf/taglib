@@ -8,6 +8,7 @@ const pt_PT =  {
     "height": "Altura (px)",
     "sort": "Ordenar",
     "operation": "Operação",
+    "add": "Adicionar",
     "edit": "Editar",
     "del": "apagar",
     "dialog_title": "Operação",

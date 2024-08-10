@@ -8,6 +8,7 @@ const uk_UA =   {
     "height": "Висота (px)",
     "sort": "Сортування",
     "operation": "Операція",
+    "add": "Додати",
     "edit": "Редагувати",
     "del": "видалити",
     "dialog_title": "Дія",

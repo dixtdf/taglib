@@ -8,6 +8,7 @@ const no_NO =   {
     "height": "Høyde (px)",
     "sort": "Sorter",
     "operation": "Handling",
+    "add": "Legge til",
     "edit": "Rediger",
     "del": "slette",
     "dialog_title": "Håndtering",

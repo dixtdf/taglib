@@ -8,6 +8,7 @@ const ko_KO =   {
     "height": "높이 (px)",
     "sort": "정렬",
     "operation": "작업",
+    "add": "추가",
     "edit": "편집",
     "del": "삭제",
     "dialog_title": "작업",

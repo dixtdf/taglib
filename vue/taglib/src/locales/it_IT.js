@@ -8,6 +8,7 @@ const it_IT =   {
     "height": "Altezza (px)",
     "sort": "Ordina",
     "operation": "Operazione",
+    "add": "Aggiungere",
     "edit": "Modifica",
     "del": "eliminare",
     "dialog_title": "Azione",

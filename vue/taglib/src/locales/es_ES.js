@@ -8,6 +8,7 @@ const es_ES =   {
     "height": "Altura (px)",
     "sort": "Ordenar",
     "operation": "Operación",
+    "add": "Agregar",
     "edit": "Editar",
     "del": "borrar",
     "dialog_title": "Operación",

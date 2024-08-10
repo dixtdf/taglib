@@ -8,6 +8,7 @@ const ro_RO =   {
     "height": "Înălțime (px)",
     "sort": "Sortare",
     "operation": "Operație",
+    "add": "Adăuga",
     "edit": "Editați",
     "del": "șterge",
     "dialog_title": "Acțiune",

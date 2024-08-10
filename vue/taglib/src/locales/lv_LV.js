@@ -8,6 +8,7 @@ const lv_LV =   {
     "height": "Augstums (px)",
     "sort": "Kārtot",
     "operation": "Darbība",
+    "add": "Pieslēgt",
     "edit": "Rediģēt",
     "del": "dzēst",
     "dialog_title": "Darbība",

@@ -8,6 +8,7 @@ const de_DE =   {
     "height": "Höhe (px)",
     "sort": "Sortieren",
     "operation": "Operation",
+    "add": "Hinzufügen",
     "edit": "Bearbeiten",
     "del": "löschen",
     "dialog_title": "Operation",
