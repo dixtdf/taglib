@@ -7,7 +7,7 @@ $plugin = 'taglib';
 $cfg = parse_plugin_cfg($plugin);
 ?>
 
-<link rel="stylesheet" href="/plugins/taglib/dist/assets/index-BsZFcA8Y.css">
+<link rel="stylesheet" href="/plugins/taglib/dist/index.css">
 <script>
     fetch('/plugins/taglib/dist/index.html')
         .then(response => response.text()) // 将响应转化为文本
