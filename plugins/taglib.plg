@@ -44,10 +44,9 @@ rm -f $(ls /boot/config/plugins/&name;/&name;*.txz 2>/dev/null &#124; grep -v '&
 <!-- POST-INSTALL SCRIPT -->
 <FILE Run="/bin/bash">
 <INLINE>
-if [ -f "/boot/config/plugins/taglib-bak/taglib.json" ]; then
+if [ -f "/boot/config/plugins/taglib.json" ]; then
   echo "revert start"
-  if cp /boot/config/plugins/taglib-bak/taglib.json /boot/config/plugins/taglib/; then
-    rm -rf /boot/config/plugins/taglib-bak/
+  if cp /boot/config/plugins/taglib.json /boot/config/plugins/taglib/; then
     echo "revert end"
   else
     echo "Failed to copy file. Revert aborted."
@@ -62,12 +61,9 @@ echo "install done"
 <!-- REMOVE SCRIPT -->
 <FILE Run="/bin/bash" Method="remove">
 <INLINE>
-if [ ! -d "/boot/config/plugins/taglib-bak" ]; then
-  mkdir /boot/config/plugins/taglib-bak
-fi
 if [ -f "/boot/config/plugins/taglib/taglib.json" ]; then
-  cp /boot/config/plugins/taglib/taglib.json /boot/config/plugins/taglib-bak/
-  echo "backup /boot/config/plugins/taglib/taglib.json to /boot/config/plugins/taglib-bak/ done"
+  cp /boot/config/plugins/taglib/taglib.json /boot/config/plugins/
+  echo "backup /boot/config/plugins/taglib/taglib.json to /boot/config/plugins/ done"
 fi
 
 removepkg &name;-&version;-x86_64-1
