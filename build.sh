@@ -15,6 +15,6 @@ echo "md5sum:$txzMd5"
 
 cd ../
 sed -i 's/<!ENTITY md5.*/<!ENTITY md5       "'"$txzMd5"'">/' ./plugins/taglib.plg
-git add .
-git commit -m "${PLUGIN_NAME}-${VERSION}.txz"
-git push
+#git add .
+#git commit -m "${PLUGIN_NAME}-${VERSION}.txz"
+#git push
